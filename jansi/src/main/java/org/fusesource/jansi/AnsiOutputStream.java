@@ -41,10 +41,7 @@ import java.util.Iterator;
  */
 public class AnsiOutputStream extends FilterOutputStream { // expected diff with AnsiPrintStream.java
 
-    public static final byte[] RESET_CODE = "\033[0m".getBytes(); // expected diff with AnsiPrintStream.java
-
-    @Deprecated
-    public static final byte[] REST_CODE = RESET_CODE; // expected diff with AnsiPrintStream.java
+    protected static final byte[] RESET_CODE = "\033[0m".getBytes(); // expected diff with AnsiPrintStream.java
 
     public AnsiOutputStream(OutputStream os) { // expected diff with AnsiPrintStream.java
         super(os); // expected diff with AnsiPrintStream.java
