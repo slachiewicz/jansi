@@ -73,6 +73,9 @@ public class AnsiConsole {
     private AnsiConsole() {
     }
 
+    /**
+     * @deprecated
+     */
     @Deprecated
     public static OutputStream wrapOutputStream(final OutputStream stream) {
         try {
@@ -90,6 +93,9 @@ public class AnsiConsole {
         }
     }
 
+    /**
+     * @deprecated
+     */
     @Deprecated
     public static OutputStream wrapErrorOutputStream(final OutputStream stream) {
         try {
@@ -107,6 +113,9 @@ public class AnsiConsole {
         }
     }
 
+    /**
+     * @deprecated
+     */
     @Deprecated
     public static OutputStream wrapOutputStream(final OutputStream stream, int fileno) {
 
