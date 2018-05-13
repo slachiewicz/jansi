@@ -20,6 +20,7 @@ import java.io.PrintStream; // expected diff with AnsiOutputStream.java
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * A ANSI print stream extracts ANSI escape codes written to 
@@ -50,7 +51,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
     private final byte[] buffer = new byte[MAX_ESCAPE_SEQUENCE_LENGTH];
     private int pos = 0;
     private int startOfValue;
-    private final ArrayList<Object> options = new ArrayList<Object>();
+    private final List<Object> options = new ArrayList<Object>();
 
     private static final int LOOKING_FOR_FIRST_ESC_CHAR = 0;
     private static final int LOOKING_FOR_SECOND_ESC_CHAR = 1;
@@ -247,7 +248,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
      * @param command
      * @return true if the escape command was processed.
      */
-    private boolean processEscapeCommand(ArrayList<Object> options, int command) { // expected diff with AnsiOutputStream.java
+    private boolean processEscapeCommand(List<Object> options, int command) { // expected diff with AnsiOutputStream.java
         try {
             switch (command) {
                 case 'A':
@@ -399,7 +400,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
      * @param options
      * @return true if the operating system command was processed.
      */
-    private boolean processOperatingSystemCommand(ArrayList<Object> options) { // expected diff with AnsiOutputStream.java
+    private boolean processOperatingSystemCommand(List<Object> options) { // expected diff with AnsiOutputStream.java
         int command = optionInt(options, 0);
         String label = (String) options.get(1);
         // for command > 2 label could be composed (i.e. contain ';'), but we'll leave
@@ -719,7 +720,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
      * @param options options
      * @param command command
      */
-    protected void processUnknownExtension(ArrayList<Object> options, int command) {
+    protected void processUnknownExtension(List<Object> options, int command) {
     }
 
     /**
@@ -758,7 +759,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
      * @param options options
      * @return true if the charcter set select command was processed.
      */
-    private boolean processCharsetSelect(ArrayList<Object> options) {
+    private boolean processCharsetSelect(List<Object> options) {
         int set = optionInt(options, 0);
         char seq = ((Character) options.get(1)).charValue();
         processCharsetSelect(set, seq);
@@ -768,7 +769,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
     protected void processCharsetSelect(int set, char seq) {
     }
 
-    private int optionInt(ArrayList<Object> options, int index) {
+    private int optionInt(List<Object> options, int index) {
         if (options.size() <= index)
             throw new IllegalArgumentException();
         Object value = options.get(index);
@@ -779,7 +780,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
         return (Integer) value;
     }
 
-    private int optionInt(ArrayList<Object> options, int index, int defaultValue) {
+    private int optionInt(List<Object> options, int index, int defaultValue) {
         if (options.size() > index) {
             Object value = options.get(index);
             if (value == null) {

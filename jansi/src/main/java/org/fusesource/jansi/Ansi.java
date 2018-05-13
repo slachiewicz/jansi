@@ -16,6 +16,7 @@
 package org.fusesource.jansi;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 /**
@@ -347,7 +348,7 @@ public class Ansi {
     }
 
     private final StringBuilder builder;
-    private final ArrayList<Integer> attributeOptions = new ArrayList<Integer>(5);
+    private final List<Integer> attributeOptions = new ArrayList<Integer>(5);
 
     public Ansi() {
         this(new StringBuilder());
