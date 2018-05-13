@@ -203,7 +203,7 @@ public class AnsiMain {
         Reader in = new InputStreamReader(AnsiMain.class.getResourceAsStream("jansi.txt"), "UTF-8");
         try {
             char[] buf = new char[1024];
-            int l = 0;
+            int l;
             while ((l = in.read(buf)) >= 0) {
                 for(int i = 0; i < l; i++) {
                     System.out.print(buf[i]);
@@ -218,7 +218,7 @@ public class AnsiMain {
         InputStream in = new FileInputStream(f);
         try {
             byte[] buf = new byte[1024];
-            int l = 0;
+            int l;
             while ((l = in.read(buf)) >= 0) {
                 System.out.write(buf, 0, l);
             }

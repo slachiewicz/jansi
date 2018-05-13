@@ -146,7 +146,7 @@ public class AnsiRenderer {
         return ansi;
     }
 
-    private static Ansi render(Ansi ansi, String name) {
+    private static void render(Ansi ansi, String name) {
         Code code = Code.valueOf(name.toUpperCase(Locale.ENGLISH));
         if (code.isColor()) {
             if (code.isBackground()) {
@@ -157,7 +157,6 @@ public class AnsiRenderer {
         } else if (code.isAttribute()) {
             ansi.a(code.getAttribute());
         }
-        return ansi;
     }
 
     public static boolean test(final String text) {

@@ -289,7 +289,7 @@ public class AnsiConsole {
 
     /**
      * undo a previous {@link #systemInstall()}.  If {@link #systemInstall()} was called
-     * multiple times, {@link #systemUninstall()} must be called the same number of times before
+     * multiple times, systemUninstall() must be called the same number of times before
      * it is actually uninstalled.
      */
     synchronized public static void systemUninstall() {
@@ -312,12 +312,12 @@ public class AnsiConsole {
 
         private final String description;
 
-        private JansiOutputType(String description) {
+        JansiOutputType(String description) {
             this.description = description;
         }
 
         String getDescription() {
             return description;
         }
-    };
+    }
 }

@@ -78,6 +78,7 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public synchronized void write(int data) throws IOException { // expected diff with AnsiPrintStream.java
         switch (state) {
@@ -237,7 +238,7 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
      * @param  optionsIterator  the underlying iterator
      * @throws IOException      if no more non-null values left
      */
-    private int getNextOptionInt(Iterator<Object> optionsIterator) throws IOException {
+    private int getNextOptionInt(Iterator<Object> optionsIterator) {
         for (;;) {
             if (!optionsIterator.hasNext())
                 throw new IllegalArgumentException();
@@ -403,7 +404,7 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
      * @param options
      * @return true if the operating system command was processed.
      */
-    private boolean processOperatingSystemCommand(List<Object> options) throws IOException { // expected diff with AnsiPrintStream.java
+    private boolean processOperatingSystemCommand(List<Object> options) { // expected diff with AnsiPrintStream.java
         int command = optionInt(options, 0);
         String label = (String) options.get(1);
         // for command > 2 label could be composed (i.e. contain ';'), but we'll leave

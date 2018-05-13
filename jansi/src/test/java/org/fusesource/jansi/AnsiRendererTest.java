@@ -36,7 +36,7 @@ public class AnsiRendererTest {
     }
 
     @Test
-    public void testTest() throws Exception {
+    public void testTest() {
         assertFalse(test("foo"));
         assertTrue(test("@|foo|"));
         assertTrue(test("@|foo"));

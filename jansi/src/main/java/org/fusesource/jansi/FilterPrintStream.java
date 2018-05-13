@@ -36,7 +36,7 @@ public class FilterPrintStream extends PrintStream
         super( new OutputStream() {
 
             @Override
-            public void write(int b) throws IOException {
+            public void write(int b) {
                 throw new RuntimeException("Direct OutputStream use forbidden: must go through delegate PrintStream");
             }
             

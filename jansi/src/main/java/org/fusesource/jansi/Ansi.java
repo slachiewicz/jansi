@@ -155,7 +155,7 @@ public class Ansi {
     public static final String DISABLE = Ansi.class.getName() + ".disable";
 
     private static Callable<Boolean> detector = new Callable<Boolean>() {
-        public Boolean call() throws Exception {
+        public Boolean call() {
             return !Boolean.getBoolean(DISABLE);
         }
     };

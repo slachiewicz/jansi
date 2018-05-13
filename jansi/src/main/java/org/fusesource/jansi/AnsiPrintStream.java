@@ -74,6 +74,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
     private static final int SECOND_CHARSET0_CHAR = '(';
     private static final int SECOND_CHARSET1_CHAR = ')';
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     protected synchronized boolean filter(int data) { // expected diff with AnsiOutputStream.java
         switch (state) {
@@ -232,7 +233,7 @@ public class AnsiPrintStream extends FilterPrintStream { // expected diff with A
      * @param  optionsIterator  the underlying iterator
      * @throws IOException      if no more non-null values left
      */
-    private int getNextOptionInt(Iterator<Object> optionsIterator) throws IOException {
+    private int getNextOptionInt(Iterator<Object> optionsIterator) {
         for (;;) {
             if (!optionsIterator.hasNext())
                 throw new IllegalArgumentException();

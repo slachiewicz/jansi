@@ -9,7 +9,6 @@ public class FilterPrintStreamTest
 {
     @Test
     public void testPrintMethods()
-        throws Exception
     {
         PrintStream ps = new FilterPrintStream(System.out);
         ps.println("String");

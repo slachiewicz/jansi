@@ -63,6 +63,7 @@ public class HtmlAnsiOutputStream extends AnsiOutputStream {
         closingAttributes.clear();
     }
 
+    @Override
     public void write(int data) throws IOException {
         switch (data) {
             case 34: // "
