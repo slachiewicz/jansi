@@ -92,7 +92,7 @@ public class FilterPrintStream extends PrintStream
         ps.flush();
     }
 
-    private void write(char buf[]) {
+    private void writeInternal(char buf[]) {
         for (char c : buf)
         {
             if (filter(c))
@@ -102,51 +102,51 @@ public class FilterPrintStream extends PrintStream
         }
     }
 
-    private void write(String s) {
+    private void writeInternal(String s) {
         char[] buf = new char[s.length()];
         s.getChars(0, s.length(), buf, 0);
-        write(buf);
+        writeInternal(buf);
     }
 
-    private void newLine() {
-        write(NEWLINE);
+    private void newLineInternal() {
+        writeInternal(NEWLINE);
     }
 
     /* Methods that do not terminate lines */
 
     @Override
     public void print(boolean b) {
-        write(b ? "true" : "false");
+        writeInternal(b ? "true" : "false");
     }
 
     @Override
     public void print(char c) {
-        write(String.valueOf(c));
+        writeInternal(String.valueOf(c));
     }
 
     @Override
     public void print(int i) {
-        write(String.valueOf(i));
+        writeInternal(String.valueOf(i));
     }
 
     @Override
     public void print(long l) {
-        write(String.valueOf(l));
+        writeInternal(String.valueOf(l));
     }
 
     @Override
     public void print(float f) {
-        write(String.valueOf(f));
+        writeInternal(String.valueOf(f));
     }
 
     @Override
     public void print(double d) {
-        write(String.valueOf(d));
+        writeInternal(String.valueOf(d));
     }
 
     @Override
     public void print(char s[]) {
-        write(s);
+        writeInternal(s);
     }
 
     @Override
@@ -154,12 +154,12 @@ public class FilterPrintStream extends PrintStream
         if (s == null) {
             s = "null";
         }
-        write(s);
+        writeInternal(s);
     }
 
     @Override
     public void print(Object obj) {
-        write(String.valueOf(obj));
+        writeInternal(String.valueOf(obj));
     }
 
 
@@ -167,14 +167,14 @@ public class FilterPrintStream extends PrintStream
 
     @Override
     public void println() {
-        newLine();
+        newLineInternal();
     }
 
     @Override
     public void println(boolean x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -182,7 +182,7 @@ public class FilterPrintStream extends PrintStream
     public void println(char x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -190,7 +190,7 @@ public class FilterPrintStream extends PrintStream
     public void println(int x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -198,7 +198,7 @@ public class FilterPrintStream extends PrintStream
     public void println(long x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -206,7 +206,7 @@ public class FilterPrintStream extends PrintStream
     public void println(float x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -214,7 +214,7 @@ public class FilterPrintStream extends PrintStream
     public void println(double x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -222,7 +222,7 @@ public class FilterPrintStream extends PrintStream
     public void println(char x[]) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -230,7 +230,7 @@ public class FilterPrintStream extends PrintStream
     public void println(String x) {
         synchronized (this) {
             print(x);
-            newLine();
+            newLineInternal();
         }
     }
 
@@ -239,7 +239,7 @@ public class FilterPrintStream extends PrintStream
         String s = String.valueOf(x);
         synchronized (this) {
             print(s);
-            newLine();
+            newLineInternal();
         }
     }
 }
