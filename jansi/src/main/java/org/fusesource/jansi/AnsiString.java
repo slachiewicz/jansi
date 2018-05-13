@@ -77,7 +77,10 @@ public class AnsiString
 
     @Override
     public boolean equals(final Object obj) {
-        return getEncoded().equals(obj);
+        if (obj instanceof CharSequence)
+            return getEncoded().equals(obj);
+        else
+            return false;
     }
 
     @Override

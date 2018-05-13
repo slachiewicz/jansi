@@ -98,10 +98,10 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
                 } else if (data == SECOND_OSC_CHAR) {
                     state = LOOKING_FOR_OSC_COMMAND;
                 } else if (data == SECOND_CHARSET0_CHAR) {
-                    options.add(Integer.valueOf(0));
+                    options.add(0);
                     state = LOOKING_FOR_CHARSET;
                 } else if (data == SECOND_CHARSET1_CHAR) {
-                    options.add(Integer.valueOf(1));
+                    options.add(1);
                     state = LOOKING_FOR_CHARSET;
                 } else {
                     reset(false);
@@ -125,8 +125,6 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
                 } else {
                     reset(processEscapeCommand(options, data));
                 }
-                break;
-            default:
                 break;
 
             case LOOKING_FOR_INT_ARG_END:
@@ -209,6 +207,9 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
             case LOOKING_FOR_CHARSET:
                 options.add(Character.valueOf((char) data));
                 reset(processCharsetSelect(options));
+                break;
+
+            default:
                 break;
         }
 
@@ -758,7 +759,7 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
      */
     private boolean processCharsetSelect(List<Object> options) {
         int set = optionInt(options, 0);
-        char seq = ((Character) options.get(1)).charValue();
+        char seq = (Character) options.get(1);
         processCharsetSelect(set, seq);
         return true;
     }

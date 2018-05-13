@@ -58,7 +58,7 @@ public class AnsiRenderer {
 
     private static final int END_TOKEN_LEN = 2;
 
-    public static String render(final String input) throws IllegalArgumentException {
+    public static String render(final String input) {
         try {
             return render(input, new StringBuilder()).toString();
         } catch (IOException e) {
@@ -81,7 +81,8 @@ public class AnsiRenderer {
     public static Appendable render(final String input, Appendable target) throws IOException {
 
         int i = 0;
-        int j, k;
+        int j;
+        int k;
 
         while (true) {
             j = input.indexOf(BEGIN_TOKEN, i);
