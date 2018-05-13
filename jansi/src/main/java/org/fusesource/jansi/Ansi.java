@@ -745,7 +745,7 @@ public class Ansi {
 
     private Ansi appendEscapeSequence(char command, Object... options) {
         flushAttributes();
-        return _appendEscapeSequence(command, options);
+        return appendEscapeSequenceInternal(command, options);
     }
 
     private void flushAttributes() {
@@ -756,12 +756,12 @@ public class Ansi {
             builder.append(SECOND_ESC_CHAR);
             builder.append('m');
         } else {
-            _appendEscapeSequence('m', attributeOptions.toArray());
+            appendEscapeSequenceInternal('m', attributeOptions.toArray());
         }
         attributeOptions.clear();
     }
 
-    private Ansi _appendEscapeSequence(char command, Object... options) {
+    private Ansi appendEscapeSequenceInternal( char command, Object... options) {
         builder.append(FIRST_ESC_CHAR);
         builder.append(SECOND_ESC_CHAR);
         int size = options.length;
