@@ -15,7 +15,6 @@
  */
 package org.fusesource.jansi;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -92,7 +91,7 @@ public class FilterPrintStream extends PrintStream
         ps.flush();
     }
 
-    private void writeInternal(char buf[]) {
+    private void writeInternal(char[] buf) {
         for (char c : buf)
         {
             if (filter(c))
@@ -145,7 +144,7 @@ public class FilterPrintStream extends PrintStream
     }
 
     @Override
-    public void print(char s[]) {
+    public void print(char[] s) {
         writeInternal(s);
     }
 
@@ -219,7 +218,7 @@ public class FilterPrintStream extends PrintStream
     }
 
     @Override
-    public void println(char x[]) {
+    public void println(char[] x) {
         synchronized (this) {
             print(x);
             newLineInternal();

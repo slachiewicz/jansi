@@ -48,7 +48,7 @@ public class AnsiOutputStream extends FilterOutputStream { // expected diff with
         super(os); // expected diff with AnsiPrintStream.java
     }
 
-    private final static int MAX_ESCAPE_SEQUENCE_LENGTH = 100;
+    private static final int MAX_ESCAPE_SEQUENCE_LENGTH = 100;
     private final byte[] buffer = new byte[MAX_ESCAPE_SEQUENCE_LENGTH];
     private int pos = 0;
     private int startOfValue;

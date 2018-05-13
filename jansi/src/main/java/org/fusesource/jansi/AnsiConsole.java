@@ -288,7 +288,7 @@ public class AnsiConsole {
      * <code>AnsiConsole.err</code> to <code>System.err</code>.
      * @see #systemUninstall()
      */
-    synchronized static public void systemInstall() {
+    public static synchronized void systemInstall() {
         installed++;
         if (installed == 1) {
             System.setOut(out);
@@ -301,7 +301,7 @@ public class AnsiConsole {
      * multiple times, systemUninstall() must be called the same number of times before
      * it is actually uninstalled.
      */
-    synchronized public static void systemUninstall() {
+    public static synchronized void systemUninstall() {
         installed--;
         if (installed == 0) {
             System.setOut(system_out);

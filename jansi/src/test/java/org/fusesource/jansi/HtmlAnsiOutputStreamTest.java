@@ -78,8 +78,8 @@ public class HtmlAnsiOutputStreamTest {
 
     @Test
     public void testResetCharacterSet() throws IOException {
-        assertEquals(colorize("(\033(0)"), "()");
-        assertEquals(colorize("(\033)0)"), "()");
+        assertEquals("()", colorize("(\033(0)"));
+        assertEquals("()", colorize("(\033)0)"));
     }
 
     private String colorize(String text) throws IOException {

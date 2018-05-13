@@ -57,8 +57,8 @@ import org.fusesource.jansi.internal.Kernel32.COORD;
  */
 public final class WindowsAnsiPrintStream extends AnsiPrintStream { // expected diff with WindowsAnsiOutputStream.java
 
-    private static final long stdout_handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    private static final long stderr_handle = GetStdHandle(STD_ERROR_HANDLE);
+    private static final long STDOUT_HANDLE = GetStdHandle(STD_OUTPUT_HANDLE);
+    private static final long STDERR_HANDLE = GetStdHandle(STD_ERROR_HANDLE);
     private final long console;
 
     private static final short FOREGROUND_BLACK = 0;
@@ -104,7 +104,7 @@ public final class WindowsAnsiPrintStream extends AnsiPrintStream { // expected 
 
     public WindowsAnsiPrintStream(PrintStream ps, boolean stdout) throws IOException { // expected diff with WindowsAnsiOutputStream.java
         super(ps); // expected diff with WindowsAnsiOutputStream.java
-        this.console = stdout ? stdout_handle : stderr_handle;
+        this.console = stdout ? STDOUT_HANDLE : STDERR_HANDLE;
         getConsoleInfo();
         originalColors = info.attributes;
     }
@@ -354,10 +354,10 @@ public final class WindowsAnsiPrintStream extends AnsiPrintStream { // expected 
         COORD org = new COORD();
         org.x = 0;
         org.y = (short)(info.cursorPosition.y + optionInt);
-        CHAR_INFO info = new CHAR_INFO();
-        info.attributes = originalColors;
-        info.unicodeChar = ' ';
-        if (ScrollConsoleScreenBuffer(console, scroll, scroll, org, info) == 0) {
+        CHAR_INFO charInfo = new CHAR_INFO();
+        charInfo.attributes = originalColors;
+        charInfo.unicodeChar = ' ';
+        if (ScrollConsoleScreenBuffer(console, scroll, scroll, org, charInfo) == 0) {
             throw new IOException(WindowsSupport.getLastErrorMessage());
         }
     }
@@ -370,10 +370,10 @@ public final class WindowsAnsiPrintStream extends AnsiPrintStream { // expected 
         COORD org = new COORD();
         org.x = 0;
         org.y = (short)(info.cursorPosition.y - optionInt);
-        CHAR_INFO info = new CHAR_INFO();
-        info.attributes = originalColors;
-        info.unicodeChar = ' ';
-        if (ScrollConsoleScreenBuffer(console, scroll, scroll, org, info) == 0) {
+        CHAR_INFO charInfo = new CHAR_INFO();
+        charInfo.attributes = originalColors;
+        charInfo.unicodeChar = ' ';
+        if (ScrollConsoleScreenBuffer(console, scroll, scroll, org, charInfo) == 0) {
             throw new IOException(WindowsSupport.getLastErrorMessage());
         }
     }
