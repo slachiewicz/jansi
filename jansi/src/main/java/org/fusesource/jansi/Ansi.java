@@ -336,12 +336,6 @@ public class Ansi {
         }
 
         @Override
-        @Deprecated
-        public Ansi restorCursorPosition() {
-            return this;
-        }
-
-        @Override
         public Ansi restoreCursorPosition() {
             return this;
         }
@@ -584,11 +578,6 @@ public class Ansi {
 
     public Ansi saveCursorPosition() {
         return appendEscapeSequence('s');
-    }
-
-    @Deprecated
-    public Ansi restorCursorPosition() {
-        return appendEscapeSequence('u');
     }
 
     public Ansi restoreCursorPosition() {
